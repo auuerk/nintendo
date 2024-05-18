@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product</title>
+</head>
+<body>
+    <h1>Add Product</h1>
+    <form method="POST">
+        <label for="product_type">Product Type</label>
+        <select id="product_type" name="product_type">
+            <option value="game">Game</option>
+            <option value="hardware">Hardware</option>
+        </select>
+        <!-- Fields for Game -->
+        <div id="game_fields">
+            <label for="game_name">Game Name</label>
+            <input type="text" id="game_name" name="game_name">
+            <label for="description">Description</label>
+            <textarea id="description" name="description"></textarea>
+            <label for="price">Price</label>
+            <input type="number" id="price" name="price" step="0.01">
+            <label for="release_date">Release Date</label>
+            <input type="date" id="release_date" name="release_date">
+            <label for="genre_id">Genre</label>
+            <input type="number" id="genre_id" name="genre_id">
+            <label for="publisher_id">Publisher</label>
+            <input type="number" id="publisher_id" name="publisher_id">
+            <label for="esrb_id">ESRB Rating</label>
+            <input type="number" id="esrb_id" name="esrb_id">
+            <label for="players_id">Players</label>
+            <input type="number" id="players_id" name="players_id">
+            <label for="game_file_size">Game File Size</label>
+            <input type="text" id="game_file_size" name="game_file_size">
+            <label for="country_of_origin">Country of Origin</label>
+            <input type="text" id="country_of_origin" name="country_of_origin">
+            <label for="play_modes">Play Modes</label>
+            <textarea id="play_modes" name="play_modes"></textarea>
+            <label for="image_url">Image URL</label>
+            <input type="text" id="image_url" name="image_url">
+            <label for="stock_quantity">Stock Quantity</label>
+            <input type="number" id="stock_quantity" name="stock_quantity">
+        </div>
+        <!-- Fields for Hardware -->
+        <div id="hardware_fields">
+            <label for="hardware_name">Hardware Name</label>
+            <input type="text" id="hardware_name" name="hardware_name">
+            <label for="price">Price</label>
+            <input type="number" id="price" name="price" step="0.01">
+            <label for="description">Description</label>
+            <textarea id="description" name="description"></textarea>
+            <label for="country_of_origin">Country of Origin</label>
+            <input type="text" id="country_of_origin" name="country_of_origin">
+            <label for="manufacturer">Manufacturer</label>
+            <input type="text" id="manufacturer" name="manufacturer">
+            <label for="sku">SKU</label>
+            <input type="text" id="sku" name="sku">
+            <label for="upc">UPC</label>
+            <input type="text" id="upc" name="upc">
+            <label for="play_modes">Play Modes</label>
+            <textarea id="play_modes" name="play_modes"></textarea>
+            <label for="screen_size">Screen Size</label>
+            <input type="text" id="screen_size" name="screen_size">
+            <label for="battery_life">Battery Life</label>
+            <input type="text" id="battery_life" name="battery_life">
+            <label for="image_url">Image URL</label>
+            <input type="text" id="image_url" name="image_url">
+            <label for="stock_quantity">Stock Quantity</label>
+            <input type="number" id="stock_quantity" name="stock_quantity">
+        </div>
+        <button type="submit">Add Product</button>
+    </form>
+    <script>
+        document.getElementById('product_type').addEventListener('change', function() {
+            var gameFields = document.getElementById('game_fields');
+            var hardwareFields = document.getElementById('hardware_fields');
+            if (this.value === 'game') {
+                gameFields.style.display = 'block';
+                hardwareFields.style.display = 'none';
+            } else {
+                gameFields.style.display = 'none';
+                hardwareFields.style.display = 'block';
+            }
+        });
+        document.getElementById('product_type').dispatchEvent(new Event('change'));
+    </script>
+</body>
+</html>

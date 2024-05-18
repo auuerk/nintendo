@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Products</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>All Products</h1>
+        <ul class="nav nav-tabs" id="productTabs" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="games-tab" data-toggle="tab" href="#games" role="tab" aria-controls="games" aria-selected="true">Games</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="hardware-tab" data-toggle="tab" href="#hardware" role="tab" aria-controls="hardware" aria-selected="false">Hardware</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="productTabsContent">
+            <div class="tab-pane fade show active" id="games" role="tabpanel" aria-labelledby="games-tab">
+                <div class="mt-3">
+                    {% for game in games %}
+                    <div>
+                        <h5><a href="{{ url_for('product_detail', product_type='game', product_id=game.game_id) }}">{{ game.game_name }}</a> - ${{ game.price }}</h5>
+                        <form action="{{ url_for('add_to_cart') }}" method="POST" style="display: inline;">
+                            <input type="hidden" name="product_id" value="{{ game.game_id }}">
+                            <input type="hidden" name="product_type" value="game">
+                            <input type="number" name="quantity" value="1" min="1" max="10">
+                            <button type="submit" class="btn btn-primary">Add to Cart</button>
+                        </form>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="tab-pane fade" id="hardware" role="tabpanel" aria-labelledby="hardware-tab">
+                <div class="mt-3">
+                    {% if hardware_items %}
+                    {% for item in hardware_items %}
+                    <div>
+                        <h5><a href="{{ url_for('product_detail', product_type='hardware', product_id=item.hardware_id) }}">{{ item.hardware_name }}</a> - ${{ item.price }}</h5>
+                        <form action="{{ url_for('add_to_cart') }}" method="POST" style="display: inline;">
+                            <input type="hidden" name="product_id" value="{{ item.hardware_id }}">
+                            <input type="hidden" name="product_type" value="hardware">
+                            <input type="number" name="quantity" value="1" min="1" max="10">
+                            <button type="submit" class="btn btn-primary">Add to Cart</button>
+                        </form>
+                    </div>
+                    {% endfor %}
+                    {% else %}
+                    <p>No hardware items found.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <a href="{{ url_for('dashboard') }}" class="btn btn-secondary mt-3">Back to Dashboard</a>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

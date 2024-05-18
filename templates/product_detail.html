@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Product Details</h1>
+        <div>
+            <h2>{{ product_name }}</h2>
+            <p>Description: {{ product_description }}</p>
+            <p>Price: ${{ product_price }}</p>
+            {% if product_release_date %}
+                <p>Release Date: {{ product_release_date }}</p>
+            {% endif %}
+            {% if product_genre %}
+                <p>Genre: {{ product_genre }}</p>
+            {% endif %}
+            {% if product_publisher %}
+                <p>Publisher: {{ product_publisher }}</p>
+            {% endif %}
+            {% if product_esrb %}
+                <p>ESRB Rating: {{ product_esrb }}</p>
+            {% endif %}
+            {% if product_players %}
+                <p>Players: {{ product_players }}</p>
+            {% endif %}
+            {% if product_game_file_size %}
+                <p>File Size: {{ product_game_file_size }}</p>
+            {% endif %}
+            {% if product_country_of_origin %}
+                <p>Country of Origin: {{ product_country_of_origin }}</p>
+            {% endif %}
+            {% if product_play_modes %}
+                <p>Play Modes: {{ product_play_modes }}</p>
+            {% endif %}
+            {% if product_screen_size %}
+                <p>Screen Size: {{ product_screen_size }}</p>
+            {% endif %}
+            {% if product_battery_life %}
+                <p>Battery Life: {{ product_battery_life }}</p>
+            {% endif %}
+            {% if product_manufacturer %}
+                <p>Manufacturer: {{ product_manufacturer }}</p>
+            {% endif %}
+            {% if product_sku %}
+                <p>SKU: {{ product_sku }}</p>
+            {% endif %}
+            {% if product_upc %}
+                <p>UPC: {{ product_upc }}</p>
+            {% endif %}
+            <p>Stock Quantity: {{ product_stock_quantity }}</p>
+            <img src="{{ product_image_url }}" alt="Product Image" style="max-width: 300px;">
+        </div>
+        <form action="{{ url_for('add_to_cart') }}" method="POST" style="display: inline;">
+            <input type="hidden" name="product_id" value="{{ product_id }}">
+            <input type="hidden" name="product_type" value="{{ product_type }}">
+            <input type="number" name="quantity" value="1" min="1" max="10">
+            <button type="submit" class="btn btn-primary">Add to Cart</button>
+        </form>
+        <a href="{{ url_for('products') }}" class="btn btn-secondary">Back to Products</a>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
