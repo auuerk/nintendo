@@ -1,3 +1,5 @@
+![image](https://github.com/auuerk/nintendo/assets/113944302/d7128242-2b9a-4553-8bb3-6e25bc2d98c6)
+
 Project Proposal: E-Commerce Management System
 Project Overview
 
